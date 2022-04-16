@@ -21,9 +21,9 @@ module sparse_tree_carry_generator
     timeunit 1ns/1ps;
     
     
-    localparam N_LANES  = int'($ceil($clog2(N_BIT)));
+    localparam N_LEVELS  = int'($ceil($clog2(N_BIT)));
     logic [N_BIT - 1 : 0] p, g;
-    logic [N_BIT - 1 : 0] g_matrix [0 : N_LANES - 1], p_matrix [0 : N_LANES - 1];
+    logic [N_BIT - 1 : 0] g_matrix [0 : N_LEVELS - 1], p_matrix [0 : N_LEVELS - 1];
     genvar j, k;
   
     
@@ -33,7 +33,7 @@ module sparse_tree_carry_generator
     ) pgnetwork (.*);
     
     generate
-        for (j = 0; j < N_LANES; j++)
+        for (j = 0; j < N_LEVELS; j++)
         begin: levels
             if (j == 0)
             begin
@@ -102,7 +102,7 @@ module sparse_tree_carry_generator
 	generate
 	   for (j = 0; j < N_BIT / 4; j++)
 	   begin: outputs
-	       assign carry_out[j] = g_matrix[N_LANES - 1][4 * j + 3];
+	       assign carry_out[j] = g_matrix[N_LEVELS - 1][4 * j + 3];
 	   end
 	endgenerate
 endmodule
