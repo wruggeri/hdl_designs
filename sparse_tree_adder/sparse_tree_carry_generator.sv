@@ -14,7 +14,7 @@ module sparse_tree_carry_generator
 )
 (
     input [N_BIT - 1 : 0] operand_1, operand_2,
-	input carry_in,
+    input carry_in,
     output [N_BIT / 4 - 1 : 0] carry_out
 );
     
@@ -54,10 +54,10 @@ module sparse_tree_carry_generator
                     (
                         .Gik(g[k]), 
                         .Pik(p[k]), 
-	                    .Gk1j(g[k - 1]), 
-	                    .Pk1j(p[k - 1]), 
-	                    .Gij(g_matrix[0][k]), 
-	                    .Pij(p_matrix[0][k])
+                        .Gk1j(g[k - 1]), 
+                        .Pk1j(p[k - 1]), 
+                        .Gij(g_matrix[0][k]), 
+                        .Pij(p_matrix[0][k])
                     );
                 end
             end
