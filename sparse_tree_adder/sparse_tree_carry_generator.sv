@@ -63,7 +63,7 @@ module sparse_tree_carry_generator
             else
             begin
                for (k = 3; k < N_BIT; k += 4)
-               begin: lane
+               begin: lanes
                    if ((k & (2 ** j)) == 0)
                    begin
                        assign g_matrix[j][k] = g_matrix[j - 1][k];
