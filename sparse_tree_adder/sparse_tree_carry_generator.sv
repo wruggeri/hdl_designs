@@ -5,6 +5,7 @@ Description:    4-sparse valence-2 Sklansky carry generator
 
 14.04.2022      Initial release
 17.04.2022      Corrected generation names
+03.05.2022		Formatting
 */
 
 
@@ -82,14 +83,14 @@ module sparse_tree_carry_generator
                                .Gij(g_matrix[j][k])
                            );
                        end
-                       else if (k + 1 > 2**(j + 1))
+                       else if (k + 1 > 2 ** (j + 1))
                        begin
                            pg_block pgblock
                            (
                                .Gik(g_matrix[j - 1][k]), 
                                .Pik(p_matrix[j - 1][k]), 
-                               .Gk1j(g_matrix[j - 1][(2 ** j) * (k /(2 ** j)) - 1]),
-                               .Pk1j(p_matrix[j - 1][(2 ** j) * (k /(2 ** j)) - 1]), 
+                               .Gk1j(g_matrix[j - 1][(2 ** j) * (k / (2 ** j)) - 1]),
+                               .Pk1j(p_matrix[j - 1][(2 ** j) * (k / (2 ** j)) - 1]), 
                                .Gij(g_matrix[j][k]),
                                .Pij(p_matrix[j][k])
                            );
