@@ -5,7 +5,7 @@ Description:    4-sparse valence-2 Sklansky carry generator
 
 14.04.2022      Initial release
 17.04.2022      Corrected generation names
-03.05.2022		Formatting
+03.05.2022      Formatting
 */
 
 
