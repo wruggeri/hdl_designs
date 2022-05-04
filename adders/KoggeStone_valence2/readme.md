@@ -1,0 +1,1 @@
+A real-world adder based on the valence-2 Kogge-Stone architecture. It features a TG-based carry calculation network and a sum-computing XOR network. The carry-in is handled by considering it as a further bit of the generate/propagate/transmit terms.
