@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    4-sparse valence-2 Sklansky carry generator
 
 03.05.2022      Initial release
+04.05.2022      Algorithm pruning
 */
 
 
@@ -34,21 +35,13 @@ module sparse_tree_carry_generator
         begin
             for (k = 2; k <= N_BIT; k += 2)
             begin
-                if (j == 1)
-                begin
-                    if (k == 2)
-                    begin                    
-                        assign g_matrix[j][k] = g_matrix[0][2] | (p_matrix[0][2] & (g_matrix[0][1] | (p_matrix[0][1] & g_matrix[0][0])));
-                    end
-                    else
-                    begin
-                        assign g_matrix[j][k] = g_matrix[j - 1][k] | (p_matrix[j - 1][k] & g_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))]);
-                        assign p_matrix[j][k] = p_matrix[j - 1][k] & p_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))];
-                    end
+                if ((j == 1) && (k == 2))
+                begin                 
+                    assign g_matrix[j][k] = g_matrix[0][2] | (p_matrix[0][2] & (g_matrix[0][1] | (p_matrix[0][1] & g_matrix[0][0])));
                 end
                 else
                 begin
-                    if (k % 4 == 0)
+                    if (k % (4 - 2 * (j == 1)) == 0)
                     begin
                         if (((k - 1) & (2 ** (j - 1))) == 0)
                         begin
@@ -57,15 +50,8 @@ module sparse_tree_carry_generator
                         end
                         else
                         begin
-                            if ((k > 2 ** (j - 1)) && (k <= 2 ** j))
-                            begin
-                                assign g_matrix[j][k] = g_matrix[j - 1][k] | (p_matrix[j - 1][k] & g_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))]);
-                            end
-                            else if (k + 1 > 2**j)
-                            begin
-                                assign g_matrix[j][k] = g_matrix[j - 1][k] | (p_matrix[j - 1][k] & g_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))]);
-                                assign p_matrix[j][k] = p_matrix[j - 1][k] & p_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))];
-                            end
+                            assign g_matrix[j][k] = g_matrix[j - 1][k] | (p_matrix[j - 1][k] & g_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))]);
+                            assign p_matrix[j][k] = p_matrix[j - 1][k] & p_matrix[j - 1][(2 ** (j - 1)) * ((k - 1) / (2 ** (j - 1)))];
                         end
                     end
                 end
