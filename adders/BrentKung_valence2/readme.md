@@ -1,1 +1,1 @@
-A full tree adder based on the valence-2 Brent-Kung architecture. It features a propagator/generator calculation network, a valence-2 carry calculation network and a sum-computing XOR network. The carry in is handled by adding a further PG computation level.
+A full tree adder based on the valence-2 Brent-Kung architecture. It features a propagator/generator calculation network, a valence-2 carry calculation network and a sum-computing XOR network. The carry-in is handled by adding a further PG computation level.
