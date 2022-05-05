@@ -2,3 +2,5 @@ A 4-sparse tree adder based on the Intel Pentium 4 version of the valence-2 Skla
 
 * A fully structural specification (synthesized circuit shown below)
 * An hybrid specification mixing dataflow and structural information
+
+The provided testbench is composed by a simple random values generator, a behavioural golden model and some assertion-based checkers.
