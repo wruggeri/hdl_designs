@@ -4,10 +4,11 @@ Author:         Walter Ruggeri
 Description:    adder testbench based on a golden model and verification assertions
 
 14.04.2022      Initial release
+06.06.2022      Corrected formatting
 */
 
 
-module testbench();
+module testbench ();
 
 
     timeunit 1ns/1ps;
