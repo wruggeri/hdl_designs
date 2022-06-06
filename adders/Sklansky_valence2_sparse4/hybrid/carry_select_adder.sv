@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    carry select adder
 
 14.04.2022      Initial release
+06.06.2022      Corrected formatting
 */
 
 
@@ -13,7 +14,7 @@ module carry_select_adder
 )
 (
     input [N_BIT - 1 : 0] operand_1, operand_2,
-	input carry_in,
+    input carry_in,
     output [N_BIT - 1 : 0] sum,
     output carr_out, overflow
 );

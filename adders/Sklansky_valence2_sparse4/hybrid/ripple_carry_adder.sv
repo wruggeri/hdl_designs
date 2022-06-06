@@ -4,19 +4,20 @@ Author:         Walter Ruggeri
 Description:    ripple carry adder
 
 14.04.2022      Initial release
+06.06.2022      Corrected formatting
 */
 
 
 module ripple_carry_adder
-    #(
-        parameter N_BIT = 32
-    )
-	(
-	   input [N_BIT - 1 : 0] operand_1, operand_2,
-	   input carry_in,
-       output [N_BIT - 1 : 0] sum,
-       output carry_out, overflow
-    );
+#(
+    parameter N_BIT = 32
+)
+(
+    input [N_BIT - 1 : 0] operand_1, operand_2,
+    input carry_in,
+    output [N_BIT - 1 : 0] sum,
+    output carry_out, overflow
+);
     
     
     timeunit 1ns/1ps;
