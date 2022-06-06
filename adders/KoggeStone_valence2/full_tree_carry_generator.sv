@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    valence-2 Kogge-Stone carry generator
 
 04.05.2022      Initial release
+06.06.2022      Corrected formatting
 */
 
 
@@ -13,7 +14,7 @@ module full_tree_carry_generator
 )
 (
     input [N_BIT - 1 : 0] operand_1, operand_2,
-	input carry_in,
+    input carry_in,
     output [N_BIT : 0] carry_out,
     output [N_BIT - 1 : 0] p
 );

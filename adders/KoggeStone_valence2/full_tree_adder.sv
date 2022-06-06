@@ -5,6 +5,7 @@ Description:    full tree adder
 
 17.04.2022      Initial release
 04.05.2022      Replaced carry-select adders with a XOR layer
+06.06.2022      Corrected formatting
 */
 
 
@@ -14,7 +15,7 @@ module full_tree_adder
 )
 (
     input [N_BIT - 1 : 0] operand_1, operand_2,
-	input carry_in,
+    input carry_in,
     output [N_BIT - 1 : 0] sum,
     output carry_out, overflow
 );
