@@ -1,2 +1,2 @@
 A real-world adder based on the valence-2 Kogge-Stone architecture. It features a TG-based carry calculation network and a sum-computing XOR network. The carry-in is handled by considering it as a further bit of the generate/propagate/transmit terms.
-The provided testbench is composed by a simple random values generator, a behavioural golden model and some assertion-based checkers.
+The provided testbench is composed by a simple random values generator, a behavioural golden model and some assertion-based checkers. Simulations have been performed with Xilinx Vivado, Cadence Xcelium and Synopsys VCS.
