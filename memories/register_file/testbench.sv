@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    testbench for a register file with formal-friendly conditional code inclusion
 
 07.06.2022      Initial release
+28.06.2022      Improved results reporting
 */
 
 
@@ -63,7 +64,8 @@ module testbench
             for (int j = 0; j < N_WRITE; j++)
                 $display("\twrite_%0d\t\t\t%0d\n", j, cnt_wr_channel[j]);
             for (int j = 0; j < N_READ; j++)
-                $display("\tread_%0d\t\t\t%0d\n", j, cnt_rd_channel[j]);      
+                $display("\tread_%0d\t\t\t%0d\n", j, cnt_rd_channel[j]);    
+            $display("----------------------------------------------------------------\n\n\n\n");  
             return; 
         endfunction
         

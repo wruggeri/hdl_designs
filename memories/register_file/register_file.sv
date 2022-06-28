@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    register file with multiple synchronous write ports and multiple asynchronous read ports
 
 07.06.2022      Initial release
+28.06.2022      Corrected register array's size
 */
 
 
@@ -27,7 +28,7 @@ module register_file
     
     localparam N_CELLS = 2 ** N_BIT_ADDRESS;
     logic [N_BIT_DATA - 1 : 0] out[N_READ];
-    logic [N_BIT_DATA - 1 : 0] register_array [0 : N_CELLS];
+    logic [N_BIT_DATA - 1 : 0] register_array [N_CELLS];
     genvar i;
     
     
