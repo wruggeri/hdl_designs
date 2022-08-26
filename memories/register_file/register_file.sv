@@ -5,6 +5,7 @@ Description:    register file with multiple synchronous write ports and multiple
 
 07.06.2022      Initial release
 28.06.2022      Corrected register array's size
+26.08.2022      Added support for some undefined values
 */
 
 
@@ -34,7 +35,7 @@ module register_file
     
     always_ff @(posedge clock or negedge reset_n)
     begin
-        if (reset_n == 0)
+        if (reset_n === 0)
         begin
             for (int j = 0; j < N_CELLS; j++)
             begin
@@ -45,7 +46,7 @@ module register_file
         begin
             for (int j = 0; j < N_WRITE; j++)
             begin
-                if (write[j] == 1)
+                if (write[j] === 1)
                     register_array[unsigned'(address_write[j])] <= data_in[j];
             end
         end
