@@ -99,7 +99,7 @@ module testbench
         */       
         $display("Starting verification phase 1: data = address in random order.\n");
         for (int j = 0; j < N_WRITE; j++)
-                write[j] = 1;
+            write[j] = 1;
                 
         for (longint i = 0; i < N_CELLS; i += N_WRITE)
         begin
@@ -116,9 +116,9 @@ module testbench
         end
         
         for (int j = 0; j < N_WRITE; j++)
-                write[j] = 0;
+            write[j] = 0;
         for (int j = 0; j < N_READ; j++)
-                read[j] = 1;     
+            read[j] = 1;     
                 
         for (longint i = 0; i < N_CELLS; i++)
         begin
@@ -150,7 +150,7 @@ module testbench
         for (int j = 0; j < N_READ; j++)
             cnt_rd_channel[j] = 0;
         for (int j = 0; j < N_READ; j++)
-                read[j] = 0;
+            read[j] = 0;
                            
         for (longint i = 0; i < N_CELLS; i++)
         begin
@@ -166,7 +166,7 @@ module testbench
         end
         
         for (int j = 0; j < N_WRITE; j++)
-                write[j] = 0;
+            write[j] = 0;
         
         for (longint i = N_CELLS - 1; i >= 0; i--)
         begin
@@ -183,7 +183,7 @@ module testbench
         end
        
         for (int j = 0; j < N_READ; j++)
-                read[j] = 0;            
+            read[j] = 0;            
            
         for (longint i = N_CELLS - 1; i >= 0; i--)
         begin
@@ -199,7 +199,7 @@ module testbench
         end
         
         for (int j = 0; j < N_WRITE; j++)
-                write[j] = 0;
+            write[j] = 0;
         
         for (longint i = 0; i < N_CELLS; i++)
         begin
