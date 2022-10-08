@@ -4,6 +4,7 @@ Author:         Walter Ruggeri
 Description:    assertions module for a register file
 
 07.06.2022      Initial release
+08.10.2022      Formatting corrections
 */
 
 
@@ -44,7 +45,7 @@ module assertions
     /*
     If no read is requested, then the data outputs must be in high impedance
     */
-    property property_Z_when_no_request( rd, out);
+    property property_Z_when_no_request (rd, out);
         (rd !== 1) |-> (out === {N_BIT_DATA{1'bZ}});
     endproperty
     generate
