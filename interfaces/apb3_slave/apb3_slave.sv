@@ -1,9 +1,11 @@
 /*
 File name:      apb3_slave.sv
 Author:         Walter Ruggeri
-Description:    APB slave module compliant with the AMBA 3 specification version B; PSLVERR currently not used
+Description:    APB slave module compliant with the AMBA 3 specification version B
 
 26/08/2022      Initial release
+08/10/2022      Implemented PSLVERR logic
+09/10/2022      Added support for formal verification delay
 */
 
 
@@ -11,7 +13,11 @@ module apb3_slave
 #(
     parameter N_BIT_DATA = 32,
 `ifdef SIMULATION_DELAY
+`ifdef FORMAL_DELAY
+        DELAY_CYCLES = 5,
+`else
         DELAY_NS = 10,
+`endif
 `endif
         N_BIT_ADDRESS = 4
 )
@@ -42,9 +48,12 @@ module apb3_slave
     //Register set internals
     localparam N_CELLS = 2 ** N_BIT_ADDRESS;
     logic [N_BIT_DATA - 1 : 0] register_set [N_CELLS];
+`ifdef FORMAL_DELAY
+    int delay_counter;
+`endif
 
 
-    assign PSLVERR = 1'b0; 
+    assign PSLVERR = ((current_state != IDLE) && ((PENABLE !== 1) || (PSEL !== 1))); 
     assign PREADY = register_ready;
     assign PRDATA = (PSEL == 1'b1 && PENABLE == 1'b1) ? read_data : 'bZ;
     
@@ -108,10 +117,23 @@ module apb3_slave
     
 `ifndef SIMULATION_DELAY   
     assign read_data = (register_enable === 1'b1) ? ((read_or_write === 1'b0) ? register_set[address] : 'bZ) : 'bZ;
-    assign register_ready = (register_enable === 1'b0);
+`else
+`ifdef FORMAL_DELAY
+    assign read_data = ((register_enable === 1'b1) && (delay_counter > DELAY_CYCLES)) ? ((read_or_write === 1'b0) ? register_set[address] : 'bZ) : 'bZ;
 `else
     assign #DELAY_NS read_data = (register_enable === 1'b1) ? ((read_or_write === 1'b0) ? register_set[address] : 'bZ) : 'bZ;
+`endif
+`endif
     assign register_ready = (register_enable === 1'b0) || ((register_enable === 1'b1) && ((read_data !== 'bZ) || (read_or_write === 1'b1)));
+
+`ifdef FORMAL_DELAY
+    always @(posedge PCLK or negedge PRESETn)
+    begin: delay_counter_update
+        if (PRESETn === 1'b0)
+            delay_counter = 0;
+        else
+            delay_counter = (register_enable === 1'b1) ? (delay_counter + 1) : 0;
+    end
 `endif
     
     always_ff @(posedge PCLK or negedge PRESETn)
