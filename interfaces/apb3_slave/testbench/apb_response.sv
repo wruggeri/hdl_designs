@@ -1,7 +1,7 @@
 /*
 File name:      apb_response.sv
 Author:         Walter Ruggeri
-Description:    description of an APB transaction response
+Description:    description of an APB transaction response; PSLVERR currently not covered
 
 28/08/2022      Initial release
 */
